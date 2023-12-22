@@ -1,0 +1,104 @@
+package stack01;
+import java.util.*;
+
+class stack_rev{
+	int stack[];
+	int top;
+	int max_leg;
+	
+	public void create(int n) {
+		top=-1;
+		max_leg=n;
+		stack=new int[n];
+	}
+	void push(int n) {
+		++top;
+		stack[top]=n;
+	}
+	int pop() {
+		int n=stack[top];
+		--top;
+		return n;
+	}
+	int peek() {
+		return stack[top];
+	}
+	void show() {
+		System.out.println("element of stack is\n");
+		for(int i=top;i>-1;--i) {
+			System.out.print(stack[i]+" ");
+		}
+	}
+	boolean is_full() {
+		if(top==max_leg-1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	boolean is_empty() {
+		if(top==-1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public static void main(String arg[] ){
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the size of stack");
+		int n=sc.nextInt();
+		stack_rev obj=new stack_rev();
+		obj.create(n);
+		int ch;
+		
+		do {
+		
+			System.out.println("\n Enter \n 1.push\n 2.pop\n 3.peek\n 4.show\n 5.Exit\n ");
+			ch=sc.nextInt();
+			switch(ch) {
+			case 1:
+				if(!obj.is_full()) {
+					System.out.println("\nEnter the data for enter \n");
+					int tmp=sc.nextInt();
+					obj.push(tmp);
+					System.out.println("Element is pushed \n");
+				}else {
+					System.out.println("Stack is fulled \n");
+				}
+				break;
+				
+			case 2:
+				if(!obj.is_empty()) {
+					System.out.println(obj.pop()+ " is poped sucessfully \n");
+				}else {
+					System.out.println("stack is empty \n");
+				}
+				break;
+				
+			case 3:
+				if(!obj.is_empty()) {
+					System.out.println(obj.peek()+ " is peek element \n");
+				}else {
+					System.out.println("stack is empty \n");
+				}
+				break;
+				
+			case 4:
+				if(!obj.is_empty()) {
+					obj.show();
+				}else {
+					System.out.println("No element pesent in stack");
+				}
+				break;
+			case 5:
+				System.out.println("Exit \n");
+				break;
+			default:
+				System.out.println("Enter a valid input \n");
+				break;	
+				
+			}
+			
+		}while(ch!=5);
+	}
+}
