@@ -1,0 +1,94 @@
+package stack01;
+import java.util.*;
+
+public class Linear_Queue{
+	int queue[];
+	int rear,front,maxsize;
+	
+	void createQueue(int size) {
+		queue=new int[size];
+		rear=-1;
+		front=0;
+		maxsize=size;
+	}
+	void Enqueue(int val) {
+		rear++;
+		queue[rear]=val;
+	}
+	boolean is_full() {
+		if(rear==maxsize-1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	int dequeue() {
+		int temp=queue[front];
+		front++;
+		return temp;
+		
+	}
+	boolean is_empty() {
+		if(front>rear) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	void print() {
+		System.out.println("Element of Queue \n");
+		for(int i=front;i<=rear;i++) {
+			System.out.println(queue[i]+ " ");
+		}
+	}
+	public static void main(String arg[] ){
+		Scanner sc = new Scanner(System.in);
+    	System.out.println("enter the size of stack");
+    	int size=sc.nextInt();
+    	Linear_Queue obj=new Linear_Queue();
+    	obj.createQueue(size);
+    	int ch;
+    	do {
+    		System.out.println("\n1.Enqueue \n2.dequeue \n3.print \n4.Exit ");
+    		ch=sc.nextInt();
+    		switch(ch) {
+    		case 1:
+    			if(!obj.is_full()) {
+    				System.out.println("\nEnter the number");
+        			int n=sc.nextInt();
+        			obj.Enqueue(n);
+        			System.out.println("Add number "+n);
+    			}
+    			else {
+    				System.out.println("Queue is full");
+    			}
+    			
+    			break;
+    		case 2:
+    			if(!obj.is_empty()) {
+    				int n1=obj.dequeue();
+        			System.out.println("Remove element is "+n1);
+    			}else {
+    				System.out.println("Queue is empty \n");
+    			}
+    			
+    			break;
+    		case 3:
+    			if(!obj.is_empty()) {
+    				obj.print();
+    			}else {
+    				System.out.println("Queue is empty \n");
+    			}
+    			
+    			break;
+    		case 4:
+    			System.out.println("\nExit");
+    			break;
+    		default:
+    			System.out.println("\nunvalid input");
+    			break;		
+    			
+    		}
+    	}while(ch!=5);
+	}
+}
