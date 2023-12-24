@@ -1,0 +1,78 @@
+package stack01;
+import java.util.*;
+public class StackUsingList {
+    Node tos;
+    void create() {
+    	tos=null;
+    }
+    void push(int d) {
+    	Node n=new Node(d);
+    	n.next=tos;
+    	tos=n;
+    	System.out.println(d+ " inserted");
+    	
+    }
+    void pop() {
+    	if(tos == null) {
+    		System.out.println("stack is empty \n");
+    	}else {
+    		int d=tos.data;
+    		tos=tos.next;
+    		System.out.println(d+" pop sucessfully \n");
+    		
+    	}
+    }
+    void peek() {
+    	if(tos == null) {
+    		System.out.println("stack is empty \n");
+    	}else {
+    		;
+    		System.out.println(tos.data+" is peek element \n");
+    		
+    	}	
+    }
+    void print() {
+    	Node n=tos;
+    	if(tos==null) {
+    		System.out.println("Empty List");
+    	}else {
+    		System.out.println("Element of list : \n");
+    		while(n!=null) {
+    			System.out.print(n.data + " ");
+    			n=n.next;
+    		}
+    	}
+    }
+    public static void main(String arg[]) {
+    	Scanner sc=new Scanner(System.in);
+    	StackUsingList obj=new StackUsingList();
+    	int ch;
+    	do {
+    		System.out.println("\n Enter \n 1.push \n 2.pop \n 3.print  \n 4.peek 0.Exit ");
+    		ch=sc.nextInt();
+    		switch(ch) {
+    		case 1:
+    			System.out.println("Enter the data to push \n");
+    			int n=sc.nextInt();
+    			obj.push(n);
+    			break;
+    		case 2:
+    			obj.pop();
+    			break;
+    		case 3:
+    			obj.print();
+    			break;
+    		case 4:
+    			obj.peek();
+    			break;
+    		case 0:
+    			System.out.println("Exit");
+    			break;
+    		default:
+    				System.out.println("Enter the valid Input");
+    				
+    		}
+    			
+    		}while( ch!=0);
+    }
+}
