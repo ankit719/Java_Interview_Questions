@@ -1,0 +1,59 @@
+import java.util.LinkedList;
+
+class HashTable {
+    private int size;
+    private LinkedList<Integer>[][] table;
+
+    public HashTable(int size) {
+        this.size = size;
+        this.table = new LinkedList[size][size];
+        initializeTable();
+    }
+
+    private void initializeTable() {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                table[i][j] = new LinkedList<>();
+            }
+        }
+    }
+
+    public void insert(int key) {
+        int hash = calculateHash(key);
+        table[hash][key % size].add(key);
+    }
+
+    public boolean search(int key) {
+        int hash = calculateHash(key);
+        return table[hash][key % size].contains(key);
+    }
+
+    public void delete(int key) {
+        int hash = calculateHash(key);
+        table[hash][key % size].remove(Integer.valueOf(key));
+    }
+
+    private int calculateHash(int key) {
+        return key % size;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int hashtableSize = 5;
+        HashTable hashTable = new HashTable(hashtableSize);
+
+        // Inserting keys
+        hashTable.insert(5);
+        hashTable.insert(10);
+        hashTable.insert(15);
+
+        // Searching for keys
+        System.out.println("Is 10 present? " + hashTable.search(10));
+        System.out.println("Is 20 present? " + hashTable.search(20));
+
+        // Deleting a key
+        hashTable.delete(10);
+        System.out.println("Is 10 present after deletion? " + hashTable.search(10));
+    }
+}
